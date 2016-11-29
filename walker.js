@@ -6,6 +6,7 @@ var leftBorder = 0;
 var rightBorder = window.innerWidth - walker.offsetWidth;
 var speed = 20;
 var xPos = rightBorder;
+
 function update() {
   if(walkingLeft){
     xPos -= speed;
@@ -27,23 +28,25 @@ function update() {
   }
 
 }
-walker.addEventListener('click', function(){
-  walker.classList.toggle("flip"),
-  walkingLeft = !walkingLeft;
-});
+// walker.addEventListener('click', function(){
+//   walker.classList.toggle("flip"),
+//   walkingLeft = !walkingLeft;
+// });
+
 //update interval
 setInterval(update, 100);
-//
-// walker.addEventListener('click', function(){
-// var url = 'http://quotesondesign.com/api/3.0/api-3.0.json';
-// $.ajax ({
-// 	url: url,
-// 	type: "GET",
-// 	dataType: "json"
-// }).done(function(){
-// 	console.log(json.quote);
-//   alert(json.quote);
-// }).fail(function(response){
-// console.log("It failed");
-// });
-// });
+
+
+walker.addEventListener('click', function(){
+const url = 'http://api.icndb.com/jokes/random?firstName=John&amp;lastName=Doe1';
+$.ajax ({
+	url: url,
+	type: "GET",
+	dataType: "json"
+}).done(function(response){
+	console.log(response);
+  prompt(response.value.joke);
+}).fail(function(response){
+console.log("It failed");
+});
+});
